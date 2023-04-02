@@ -63,7 +63,7 @@ const App = () => {
       <Searchbar onSubmit={handleFormSubmit} />
       {pictures.length !== 0 && (
         <>
-          <ImageGallery pictures={pictures} />{' '}
+          <ImageGallery pictures={pictures} />
           {pending ? <Loader /> : <Button onLoadMore={incrementPage} />}
         </>
       )}
