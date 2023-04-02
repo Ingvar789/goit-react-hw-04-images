@@ -16,8 +16,9 @@ const App = () => {
   const [page, setPage] = useState(1);
   const [pending, setPending] = useState(false);
   const isFirstRender = useRef(0);
-  const handleFormSubmit = searchQuery => {
-    setSearchQuery(searchQuery);
+
+  const handleFormSubmit = query => {
+    setSearchQuery(query);
   };
 
   useEffect(() => {

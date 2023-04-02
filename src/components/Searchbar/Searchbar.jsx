@@ -16,8 +16,8 @@ const Searchbar = props => {
     if (searchQuery.trim() === '') {
       return toast.error('Empty search!');
     }
-    setSearchQuery('');
     props.onSubmit(searchQuery);
+    setSearchQuery('');
   };
 
   return (
