@@ -18,13 +18,10 @@ const App = () => {
   const isFirstRender = useRef(0);
 
   const handleFormSubmit = query => {
-    setSearchQuery(query);
-  };
-
-  useEffect(() => {
     setPictures([]);
     setPage(1);
-  }, [searchQuery]);
+    setSearchQuery(query);
+  };
 
   useEffect(() => {
     if (isFirstRender.current < 2) {
