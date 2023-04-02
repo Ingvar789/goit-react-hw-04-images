@@ -38,7 +38,7 @@ const App = () => {
             setPictures(response);
             return;
           } else {
-            setPictures(pictures => [...pictures, ...response]);
+            setPictures(prevPictures => [...prevPictures, ...response]);
           }
           return;
         }
@@ -54,7 +54,7 @@ const App = () => {
   }, [searchQuery, page]);
 
   const incrementPage = () => {
-    setPage(page + 1);
+    setPage(prevPage => prevPage + 1);
   };
 
   return (
