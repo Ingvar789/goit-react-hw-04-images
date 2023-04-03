@@ -1,6 +1,6 @@
 // імпорт компонент
-import React, { useEffect, useState, useRef } from 'react';
-import getImages from 'services/api';
+import React, { useEffect, useState } from 'react';
+import getImages from '../../services/api';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from 'components/Searchbar/Searchbar';
@@ -15,7 +15,6 @@ const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
   const [pending, setPending] = useState(false);
-  const isFirstRender = useRef(0);
 
   const handleFormSubmit = query => {
     setPictures([]);
@@ -24,8 +23,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (isFirstRender.current < 2) {
-      isFirstRender.current += 1;
+    if (searchQuery === '') {
       return;
     }
     const getResponse = async () => {
@@ -45,7 +43,7 @@ const App = () => {
         toast.warning('There are no pictures for your request.');
         return;
       } catch (error) {
-        console.log(error);
+        toast.error(error);
       } finally {
         setPending(false);
       }
@@ -61,7 +59,7 @@ const App = () => {
     <div className={css.app}>
       <ToastContainer autoClose={3000} />
       <Searchbar onSubmit={handleFormSubmit} />
-      {pictures.length !== 0 && (
+      {pictures.length && (
         <>
           <ImageGallery pictures={pictures} />
           {pending ? <Loader /> : <Button onLoadMore={incrementPage} />}
